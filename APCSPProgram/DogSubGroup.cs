@@ -26,17 +26,23 @@ internal class DogSubGroup
         string SubGroup_pick = Console.ReadLine();
         SubGroup_pick = char.ToUpper(SubGroup_pick[0]) + SubGroup_pick.Substring(1);
         // List<string> SubGroup = new List<string>();
-        if (SubGroups.TryGetValue(SubGroup_pick, out List<string> selectedSubGroup))
+        bool subgroup = false;
+        while (!subgroup)
         {
-            SubGroup = selectedSubGroup;
-            return SubGroup;
+            if (SubGroups.TryGetValue(SubGroup_pick, out List<string> selectedSubGroup))
+            {
+                SubGroup = selectedSubGroup;
+                subgroup = true;
+            }
+            else
+            {
+                // Handle the case when the group is invalid
+                Console.WriteLine("Invalid group selection, try again");
+                SubGroup_pick = Console.ReadLine();
+                SubGroup_pick = char.ToUpper(SubGroup_pick[0]) + SubGroup_pick.Substring(1);
+            }
         }
-        else
-        {
-            // Handle the case when the group is invalid
-            Console.WriteLine("Invalid group selection");
-            return SubGroup;
-        }
+        return SubGroup;
     }
     public static List<string> ContinueSubGroupPick(List<string> Dogs_selection) 
     {
@@ -50,11 +56,20 @@ internal class DogSubGroup
                 Console.WriteLine(" ");
                 continueLoop = true;
                 List<string> Dog_SubGroup = DogSubGroup.GetSubGroupPick();
-                if (!Dogs_selection.Intersect(Dog_SubGroup).Any())
+                bool functionalchoice = false;
+                while (!functionalchoice)
                 {
-                    Console.WriteLine("Lists have different elements and cannot be combined.");
-                    Dog_SubGroup = DogSubGroup.GetSubGroupPick();
+                    if (!Dogs_selection.Intersect(Dog_SubGroup).Any())
+                    {
+                        Console.WriteLine("Lists have different elements and cannot be combined.");
+                        Dog_SubGroup = DogSubGroup.GetSubGroupPick();
+                    }
+                    else
+                    {
+                        functionalchoice = true;
+                    }
                 }
+
                 Dogs_selection = Dog_SubGroup.Intersect(Dogs_selection).ToList();
             }
             else

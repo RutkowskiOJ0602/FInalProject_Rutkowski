@@ -20,10 +20,18 @@ public static partial class Program
         List<string> Dog_Group = DogGroup.GetGroupPick();
         Dog_Group = DogGroup.ContinuePickGroup(Dog_Group);
         List<string> Dog_SubGroup = DogSubGroup.GetSubGroupPick();
-        if (!Dog_SubGroup.Intersect(Dog_Group).Any())
+        bool functionalchoice = false;
+        while (!functionalchoice)
         {
-            Console.WriteLine("Lists have different elements and cannot be combined.");
-            Dog_SubGroup = DogSubGroup.GetSubGroupPick();
+            if (!Dog_SubGroup.Intersect(Dog_Group).Any())
+            {
+                Console.WriteLine("Lists have different elements and cannot be combined.");
+                Dog_SubGroup = DogSubGroup.GetSubGroupPick();
+            }
+            else
+            {
+                functionalchoice = true;
+            }
         }
         List<string> Dogs_selection = Dog_SubGroup.Intersect(Dog_Group).ToList();
         Dogs_selection = DogSubGroup.ContinueSubGroupPick(Dogs_selection);

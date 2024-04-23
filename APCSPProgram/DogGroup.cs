@@ -22,17 +22,23 @@ public class DogGroup
         Group_pick = char.ToUpper(Group_pick[0]) + Group_pick.Substring(1);
         // create if statements to assign Group as the list
         List<string> Group = new List<string>();
-        if (Groups.TryGetValue(Group_pick, out List<string> selectedGroup))
+        bool group = false;
+        while (!group)
         {
-            Group = selectedGroup;
-            return Group;
+            if (Groups.TryGetValue(Group_pick, out List<string> selectedGroup))
+            {
+                Group = selectedGroup;
+                group = true;
+            }
+            else
+            {
+                // Handle the case when the group is invalid
+                Console.WriteLine("Invalid group selection, try again.");
+                Group_pick = Console.ReadLine();
+                Group_pick = char.ToUpper(Group_pick[0]) + Group_pick.Substring(1);
+            }
         }
-        else
-        {
-            // Handle the case when the group is invalid
-            Console.WriteLine("Invalid group selection");
-            return Group;
-        }
+        return Group;
     }
     public static List<string> ContinuePickGroup(List<string> Dog_Group)
     {
