@@ -14,11 +14,12 @@ public class DogGroup
         ["Herding"] = new List<string> { "German Shepherd", "Australian Shepherd", "Border Collie", "Spanish Water Dog", "Pembroke Welsh Corgi", "Shetland Sheepdog" },
         ["Working"] = new List<string> { "Samoyed", "Standard Schnauzer", "Alaskan Malamute", "Bernese Mountain Dog", "Boxer", "Doberman Pinscher", "Great Dane", "Mastiff", "Newfoundland", "Rottweiler", "Siberian Husky" },
         ["Sporting"] = new List<string> { "English Cocker Spaniel", "American Cocker Spaniel", "German Shorthaired Pointer", "Golden Retriever", "Irish Setter", "Labrador Retriever" },
-        ["Non-Sporting"] = new List<string> { "Boston Terrier", "Dalmatian", "Chow Chow", "French Bulldog", "Miniature Poodle", "Standard Poodle", "Shiba Inu" }
+        ["Non-Sporting"] = new List<string> { "Boston Terrier", "tian", "Chow Chow", "French Bulldog", "Miniature Poodle", "Standard Poodle", "Shiba Inu" }
     };
     public static List<string> GetGroupPick()
     {
         string? Group_pick = Console.ReadLine();
+        Group_pick = char.ToUpper(Group_pick[0]) + Group_pick.Substring(1);
         // create if statements to assign Group as the list
         List<string> Group = new List<string>();
         if (Groups.TryGetValue(Group_pick, out List<string> selectedGroup))

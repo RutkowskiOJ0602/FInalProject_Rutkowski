@@ -1,4 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using DogBreedPicker;
 using System.Text.RegularExpressions;
 
 public static partial class Program
@@ -26,5 +27,7 @@ public static partial class Program
         }
         List<string> Dogs_selection = Dog_SubGroup.Intersect(Dog_Group).ToList();
         Dogs_selection = DogSubGroup.ContinueSubGroupPick(Dogs_selection);
+        string price = Prices.GetDogPrice();
+        Console.WriteLine("Now go get your dream dog!!!");
     }
 }

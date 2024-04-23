@@ -24,6 +24,7 @@ internal class DogSubGroup
         Console.WriteLine("Type in the input as Family Friendly, Hypoallergenic, Small, Medium, or Large");
         Console.WriteLine("Pick a subcategory based on what you look for in a dog");
         string SubGroup_pick = Console.ReadLine();
+        SubGroup_pick = char.ToUpper(SubGroup_pick[0]) + SubGroup_pick.Substring(1);
         // List<string> SubGroup = new List<string>();
         if (SubGroups.TryGetValue(SubGroup_pick, out List<string> selectedSubGroup))
         {
