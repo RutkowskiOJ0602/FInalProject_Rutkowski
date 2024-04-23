@@ -69,6 +69,7 @@ namespace DogBreedPicker
             while (continueloop)
             {
                 Console.WriteLine("Type in a dog dog breed to get a price range");
+                Console.WriteLine("Hint: type in as seen above.");
                 Breed = Console.ReadLine();
                 Breed = Breed.Replace(" ", "");
                 if (DogPrices.TryGetValue(Breed, out string selectedBreed))
